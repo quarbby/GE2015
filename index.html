@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	
+	<script type="text/javascript" src="quotes.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+	
+	<title>Quotable Quotes GE2015</title>
+	
+	<style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: xx-large;
+			font-weight: bold;
+			background-color: #E3F0FB;
+			border-radius: 4px;
+			padding: 10px;
+			text-align: center;
+			height: 100%;			
+		}
+	
+		blockquote {
+			font-family: Georgia, serif;
+			font-size: 18px;
+			font-style: italic;
+			width: 350px;
+			height: 350px;
+			margin: 10px;
+			padding: 0.25em 40px;
+			line-height: 1.45;
+			position: relative;
+			color: #383838;
+			background: #f9f9f9;
+			border: 1px solid #ccc;
+		}
+		
+		blockquote:before {
+			display: block;
+			content: "\201C";
+			font-size: 80px;
+			position: absolute;
+			left: 12px;
+			top: -20px;
+			color: #7a7a7a;
+		}
+		
+		blockquote cite {
+			color: #999999;
+			font-size: 14px;
+			display: block;
+			margin-top: 5px;
+		}
+		 
+		blockquote cite:before {
+			content: "\2014 \2009";
+		}
+		
+		blockquote p {
+		  display: inline;
+		  margin-bottom: 20px;
+		}
+		
+		#quotesContainer {
+		    margin: auto;
+		    width: 30%;
+		    padding: 10px;		
+		}
+		
+	
+	</style>
+	</head>
+	
+	<body>
+			<img src="sgvotes.gif">
+			<p id="mainText">Quotable Quotes<br> General Elections 2015</p>
+		
+			<div id="quotesContainer">
+			</div>
+		
+
+	<script>
+		var quotesContainer = document.getElementById('quotesContainer');
+		var quotesData = JSON.parse(quotes);
+
+		for (var i=0; i<quotesData.length; i++) {
+			var quote = quotesData[i];
+			var newQuote = document.createElement('blockquote');
+			newQuote.innerHTML = quote.text;
+			var cite = document.createElement('cite');
+			cite.innerHTML = quote.cite;
+			newQuote.appendChild(cite);
+			
+			if (quote.pic != undefined) {
+				newQuote.innerHTML += '<div><img src="' + quote.pic + '" width="350"></div>';
+			}
+			
+			else if (quote.video != undefined) {
+				newQuote.innerHTML += '<div class="fb-video" data-href="' + quote.video + '" data-width="350" data-allowfullscreen="true"></div>';
+			}
+
+			quotesContainer.appendChild(newQuote);  			
+		}
+		
+		(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+ 		
+	</script>
+	
+	</body>
+</html>
